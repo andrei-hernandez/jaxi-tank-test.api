@@ -31,11 +31,12 @@ input UserInput {
 type SessionInfo {
   userId: ID!
   token: String!
+  avatar: String!
   tokenExpiration: Int!
   err: Error
 }
 
-type accountCreationData {
+type accountCreationData {  
   hasCreated: Boolean!
   err: Error
 }
