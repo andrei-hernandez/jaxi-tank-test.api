@@ -1,5 +1,7 @@
 type Query {
-  accountLogIn(user: LogInInput!): SessionInfo!  
+  accountLogIn(user: LogInInput!): SessionInfo!
+  getProyects(token: String!): getProyectsQueryInfo!
+  getContacts(token: String! ): getContactsQueryInfo!
 }
 
 type Mutation {
@@ -36,8 +38,81 @@ type SessionInfo {
   err: Error
 }
 
+type UserContact {
+  email: String!
+  avatar: String!  
+}
+
 type accountCreationData {  
   hasCreated: Boolean!
+  err: Error
+}
+
+type Proyects {
+  _id: ID!
+  title: String!
+  creator: Users!
+  members: [ProyectMembers!]!
+  tasks: [Tasks!]
+  startAt: String
+  endsAt: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+input ProyectsInput {
+  token: String!
+  title: String!
+  creator: String!  
+  startAt: String
+  endsAt: String
+}
+
+type ProyectMembers {
+  email: String!
+  avatar: String!
+  role: String!  
+}
+
+type getProyectsQueryInfo {
+  Proyects: [Proyects]
+  err: Error
+}
+
+type Tasks {
+  _id: ID!
+  title: String!
+  members: [ProyectMembers]
+  startAt: String
+  endsAt: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+input TasksInput {
+  token: String!
+  title: String!
+  startAt: String
+  endsAt: String
+}
+
+type getTasksQueryInfo {
+  tasks: [Tasks]
+  err: Error
+}
+
+input contactsInput {
+  token: String!
+  email: String! 
+}
+
+input getContactsInput {
+  token: String!
+  user: String!
+}
+
+type getContactsQueryInfo {
+  contacts: [UserContact!] 
   err: Error
 }
 
