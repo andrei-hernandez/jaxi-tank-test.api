@@ -6,8 +6,9 @@ export interface UserContact {
 
 export interface UserContactData {
   _id: string;
+  userName: string;
   email: string;
-  avatar?: string;
+  avatar: string;
 }
 
 export interface ContactsInput {

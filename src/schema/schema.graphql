@@ -41,10 +41,9 @@ type SessionInfo {
 
 type UserContact {
   _id: ID!
+  userName: String!
   email: String!
   avatar: String!  
-  createdAt: String!
-  updatedAt: String!
 }
 
 type accountCreationData {  

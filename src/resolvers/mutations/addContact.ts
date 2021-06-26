@@ -5,9 +5,11 @@ import { UserMDB } from "../../models/user";
 export const addContact = async (newItemContact: ContactsInput): Promise<contactsCreationData> => {
   const decompressedToken = decodeToken(newItemContact?.token);
   const id = decompressedToken?.userId;
-
   const contactExist = await UserMDB.findById(id, { contacts: { $elemMatch: { $gte: `${newItemContact?.email}` } } });
-  if (contactExist?.contacts?.length !== 0) {
+
+  const emailToCompare = contactExist?.contacts?.[0] || "";
+
+  if (contactExist?.contacts?.length !== 0 && emailToCompare === newItemContact.email) {
     return { contactHasCreated: false, err: { errorCode: 3, errorDesc: "Contact Exists" } }
   }
 

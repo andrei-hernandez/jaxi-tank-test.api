@@ -1,7 +1,9 @@
 import { IResolvers } from "graphql-tools";
+import { UserContactData } from "../../models/contacts";
 import { sessionData } from "../../models/user";
 
 import { logIn } from "./accountLogIn";
+import { contactsResolver } from "./getContacts";
 
 // Los resolvers de las operaciones de consulta para devolver información
 const queries: IResolvers = {
@@ -10,6 +12,10 @@ const queries: IResolvers = {
       const SessionData = await logIn(user);
       return SessionData;
     },
+    getContacts: async (_: void, { token }): Promise<Array<UserContactData>> => {
+      const qContacts = await contactsResolver(token);
+      return qContacts;
+    }
   }
 };
 

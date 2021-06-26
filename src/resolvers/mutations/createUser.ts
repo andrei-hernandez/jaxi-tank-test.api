@@ -4,6 +4,12 @@ import { genSalt, hash } from 'bcrypt';
 
 export const insertUser = async (NewItemUser: User): Promise<accountCreationData> => {
 
+  const avatarDefaultUri: string = "https://www.pikpng.com/pngl/b/326-3261783_person-icon-default-user-image-jpg-clipart.png";
+
+  if (NewItemUser?.avatar === "" || NewItemUser?.avatar === null || NewItemUser?.avatar === undefined) {
+    NewItemUser.avatar = avatarDefaultUri;
+  }
+
   const IfAccountExists = await UserMDB.findOne({ email: `${NewItemUser.email}` }); //calls the mongoose model for a user to find the user email provided
   if (IfAccountExists) {
     return { hasCreated: false, err: { errorCode: 3, errorDesc: "Account Exists" } }
