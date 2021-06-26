@@ -1,5 +1,7 @@
 import { IResolvers } from "graphql-tools";
+import { contactsCreationData, ContactsInput } from "../../models/contacts";
 import { accountCreationData, User } from "../../models/user";
+import { addContact } from "./addContact";
 import { insertUser } from "./createUser";
 
 
@@ -15,6 +17,14 @@ const mutations: IResolvers = {
       const cAccount: accountCreationData = await insertUser(newItemUser); //calls the method for inster a user and then return if is correct or no
       return cAccount;
     },
+    createContact: async (_: void, { contact }): Promise<contactsCreationData> => {
+      const newItemContact: ContactsInput = {
+        token: contact?.token,
+        email: contact?.email
+      }
+      const cContact = await addContact(newItemContact);
+      return cContact
+    }
   }
 }
 

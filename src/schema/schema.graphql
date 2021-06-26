@@ -5,7 +5,8 @@ type Query {
 }
 
 type Mutation {
-  createUser(user: UserInput!): accountCreationData!  
+  createUser(user: UserInput!): accountCreationData! 
+  createContact(contact: contactsInput!): contactsCreationData!
 }
 
 type Users {
@@ -39,8 +40,11 @@ type SessionInfo {
 }
 
 type UserContact {
+  _id: ID!
   email: String!
   avatar: String!  
+  createdAt: String!
+  updatedAt: String!
 }
 
 type accountCreationData {  
@@ -106,13 +110,13 @@ input contactsInput {
   email: String! 
 }
 
-input getContactsInput {
-  token: String!
-  user: String!
+type getContactsQueryInfo {
+  contacts: [UserContact]
+  err: Error
 }
 
-type getContactsQueryInfo {
-  contacts: [UserContact!] 
+type contactsCreationData {
+  contactHasCreated: Boolean!
   err: Error
 }
 

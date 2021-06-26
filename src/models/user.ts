@@ -1,9 +1,11 @@
 import { Schema, model } from "mongoose";
+import { UserContact } from './contacts';
 import { Error } from './error';
 export interface User {
   userName: string;
   email: string;
   avatar?: string;
+  contacts?: Array<UserContact>
   password: string;
 }
 
@@ -34,6 +36,7 @@ const userSchema = new Schema<User>(
     email: { type: String, required: true },
     avatar: { type: String, required: false },
     password: { type: String, required: true },
+    contacts: { type: Array, required: false }
   },
   {
     versionKey: false,
