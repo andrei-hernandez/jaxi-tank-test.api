@@ -20,6 +20,8 @@ export interface TaskData {
   status: string;
   startAt?: string;
   endsAt?: string;
+  createdAt?: any;
+  updatedAt?: any;
 }
 
 export interface TaskInput {

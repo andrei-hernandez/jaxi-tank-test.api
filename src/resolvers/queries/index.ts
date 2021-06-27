@@ -4,6 +4,7 @@ import { sessionData } from "../../models/user";
 
 import { logIn } from "./accountLogIn";
 import { contactsResolver } from "./getContacts";
+import { proyectsQuery } from "./getProyect";
 
 const queries: IResolvers = {
   Query: {
@@ -14,6 +15,10 @@ const queries: IResolvers = {
     getContacts: async (_: void, { token }): Promise<Array<UserContactData>> => {
       const qContacts = await contactsResolver(token);
       return qContacts;
+    },
+    getProyects: async (_: void, { token }): Promise<any> => {
+      const qProyects = await proyectsQuery(token);
+      return qProyects;
     }
   }
 };

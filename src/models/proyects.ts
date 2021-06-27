@@ -24,7 +24,9 @@ export interface Proyect {
 }
 
 export interface ProyectMembers {
-  email: string;
+  userId: string;
+  email?: string;
+  avatar?: string;
   role: string;
 }
 

@@ -1,6 +1,7 @@
 import { decodeToken } from "../../auth/decodeToken";
 import { ProyectsMDB } from "../../models/proyects";
 import { TaskInput, tasksCreationData, TasksMDB } from "../../models/tasks";
+import { UserMDB } from "../../models/user";
 
 export const addNewtask = async (newTaskItem: TaskInput): Promise<tasksCreationData> => {
   const decodedToken = decodeToken(newTaskItem?.token);
@@ -26,6 +27,12 @@ export const addNewtask = async (newTaskItem: TaskInput): Promise<tasksCreationD
 
   const res = await ProyectsMDB.findByIdAndUpdate(id, { $push: { tasks: `${storeTask?.id}` } });
   if (res === null || res === undefined) {
+    return { taskHasCreated: false, err: { errorCode: 7, errorDesc: "Error occurred, please try again" } }
+  }
+
+  const userId = decodedToken.userId;
+  const userRes = await UserMDB.findByIdAndUpdate(userId, { $push: { tasks: `${storeTask?.id}` } });
+  if (userRes === null || userRes === undefined) {
     return { taskHasCreated: false, err: { errorCode: 7, errorDesc: "Error occurred, please try again" } }
   }
 

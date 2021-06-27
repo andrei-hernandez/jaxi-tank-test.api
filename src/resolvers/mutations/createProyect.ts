@@ -1,5 +1,6 @@
 import { decodeToken } from "../../auth/decodeToken";
 import { proyectCreationData, ProyectsForDB, ProyectsInput, ProyectsMDB } from "../../models/proyects";
+import { UserMDB } from "../../models/user";
 
 export const addProyect = async (proyect: ProyectsInput): Promise<proyectCreationData> => {
   const decodedToken = decodeToken(proyect?.token);
@@ -10,7 +11,7 @@ export const addProyect = async (proyect: ProyectsInput): Promise<proyectCreatio
 
   const newItemProyect: ProyectsForDB = {
     title: proyect?.title,
-    members: [{ email: addRole, role: 'admin' }],
+    members: [{ userId: addRole, role: 'admin' }],
     creator: proyect?.creator,
     startAt: proyect?.startAt,
     endsAt: proyect?.endsAt
@@ -27,6 +28,15 @@ export const addProyect = async (proyect: ProyectsInput): Promise<proyectCreatio
   const storeProyect = await newProyect.save();
   if (storeProyect === null || storeProyect === undefined) {
     return { proyectHasCreated: false, err: { errorCode: 6, errorDesc: "Error has ocurred, try again" } }
+  }
+
+  const proyectId = storeProyect?.id;
+  const id = newItemProyect?.creator;
+
+  const res = await UserMDB.findByIdAndUpdate(id, { $push: { proyects: proyectId } });
+  if (res === null || res === undefined) {
+    console.log(res);
+    return { proyectHasCreated: false, err: { errorCode: 4, errorDesc: "Error occurred, please try again" } }
   }
 
   return { proyectHasCreated: true }

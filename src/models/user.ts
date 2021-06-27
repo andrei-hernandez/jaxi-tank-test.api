@@ -1,11 +1,13 @@
 import { Schema, model } from "mongoose";
 import { UserContact } from './contacts';
 import { Error } from './error';
+import { ProyectsData } from "./proyects";
 export interface User {
   userName: string;
   email: string;
   avatar?: string;
   contacts?: Array<UserContact>
+  proyects?: Array<ProyectsData>
   password: string;
 }
 
@@ -36,7 +38,9 @@ const userSchema = new Schema<User>(
     email: { type: String, required: true },
     avatar: { type: String, required: false },
     password: { type: String, required: true },
-    contacts: { type: Array, required: false }
+    contacts: { type: Array, required: false },
+    proyects: { type: Array, required: false },
+    tasks: { type: Array, required: false }
   },
   {
     versionKey: false,

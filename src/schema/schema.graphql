@@ -13,7 +13,7 @@ type Mutation {
 }
 
 type Users {
-  _id: ID!
+  id: ID!
   userName: String!
   avatar: String
   email: String!
@@ -55,11 +55,11 @@ type accountCreationData {
 }
 
 type Proyects {
-  _id: ID!
+  id: ID!
   title: String!
   creator: Users!
   members: [ProyectMembers!]!
-  tasks: [String!]
+  tasks: [Tasks!]
   startAt: String
   endsAt: String
   createdAt: String!
@@ -99,12 +99,12 @@ type proyectCreationData {
 }
 
 type getProyectsQueryInfo {
-  Proyects: [Proyects]
+  proyects: [Proyects]
   err: Error
 }
 
 type Tasks {
-  _id: ID!
+  id: ID!
   proyectId: ID!
   title: String!
   members: [ProyectMembers]
