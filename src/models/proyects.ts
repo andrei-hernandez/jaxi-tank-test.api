@@ -45,8 +45,20 @@ export interface ProyectsForDB {
   endsAt: string;
 }
 
+export interface MembersInput {
+  token: string;
+  proyectId: string;
+  email: string;
+  role: string;
+}
+
 export interface getProyectsQueryInfo {
   proyects?: Array<ProyectsData>;
+  err?: Error;
+}
+
+export interface membersCreationData {
+  memberHasAdded: boolean;
   err?: Error;
 }
 

@@ -8,6 +8,7 @@ type Mutation {
   createUser(user: UserInput!): accountCreationData! 
   createContact(contact: contactsInput!): contactsCreationData!
   createProyect(proyect: ProyectsInput!): proyectCreationData!
+  addMember(member: MembersInput!): membersCreationData!
   createTask(task: TasksInput!): tasksCreationData!
 }
 
@@ -78,6 +79,18 @@ type ProyectMembers {
   email: String!
   avatar: String!
   role: String!  
+}
+
+input MembersInput {
+  token: String!
+  proyectId: String!
+  email: String!
+  role: String!
+}
+
+type membersCreationData {
+  memberHasAdded: Boolean!
+  err: Error
 }
 
 type proyectCreationData {
