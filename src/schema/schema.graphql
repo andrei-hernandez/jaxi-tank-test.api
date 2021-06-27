@@ -7,6 +7,8 @@ type Query {
 type Mutation {
   createUser(user: UserInput!): accountCreationData! 
   createContact(contact: contactsInput!): contactsCreationData!
+  createProyect(proyect: ProyectsInput!): proyectCreationData!
+  createTask(task: TasksInput!): tasksCreationData!
 }
 
 type Users {
@@ -56,7 +58,7 @@ type Proyects {
   title: String!
   creator: Users!
   members: [ProyectMembers!]!
-  tasks: [Tasks!]
+  tasks: [String!]
   startAt: String
   endsAt: String
   createdAt: String!
@@ -66,6 +68,7 @@ type Proyects {
 input ProyectsInput {
   token: String!
   title: String!
+  members: [String!]!
   creator: String!  
   startAt: String
   endsAt: String
@@ -77,6 +80,11 @@ type ProyectMembers {
   role: String!  
 }
 
+type proyectCreationData {
+  proyectHasCreated: Boolean!
+  err: Error
+}
+
 type getProyectsQueryInfo {
   Proyects: [Proyects]
   err: Error
@@ -84,19 +92,34 @@ type getProyectsQueryInfo {
 
 type Tasks {
   _id: ID!
+  proyectId: ID!
   title: String!
   members: [ProyectMembers]
+  status: String!
   startAt: String
   endsAt: String
   createdAt: String!
   updatedAt: String!
 }
 
+type TaskMember {
+  email: String!
+  avatar: String!
+  role: String!  
+}
+
 input TasksInput {
   token: String!
+  proyectId: String!
   title: String!
+  members: [String!]
   startAt: String
   endsAt: String
+}
+
+type tasksCreationData {
+  taskHasCreated: Boolean!
+  err: Error
 }
 
 type getTasksQueryInfo {
