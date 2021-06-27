@@ -1,6 +1,8 @@
 type Query {
   accountLogIn(user: LogInInput!): SessionInfo!
   getProyects(token: String!): getProyectsQueryInfo!
+  getTasksFromUser(token: String!): getTaskFromUserQueryInfo!
+  getTasksFromProyect(taskq: TaskFromProyectQueryInput): getTaskFromProyectQueryInfo!
   getContacts(token: String! ): getContactsQueryInfo!
 }
 
@@ -76,6 +78,7 @@ input ProyectsInput {
 }
 
 type ProyectMembers {
+  id: ID!
   email: String!
   avatar: String!
   role: String!  
@@ -125,8 +128,23 @@ input TasksInput {
   endsAt: String
 }
 
+input TaskFromProyectQueryInput {
+  token: String!
+  proyectId: String!
+}
+
 type tasksCreationData {
   taskHasCreated: Boolean!
+  err: Error
+}
+
+type getTaskFromUserQueryInfo {
+  tasks: [Tasks]
+  err: Error
+}
+
+type getTaskFromProyectQueryInfo {
+  tasks: [Tasks]
   err: Error
 }
 

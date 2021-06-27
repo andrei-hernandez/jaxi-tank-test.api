@@ -5,7 +5,7 @@ export interface Tasks {
   _id: string;
   proyectId: string;
   title: string;
-  members?: Array<string>;
+  members?: Array<TaskMember>;
   status: string;
   startAt?: string;
   endsAt?: string;
@@ -24,6 +24,12 @@ export interface TaskData {
   updatedAt?: any;
 }
 
+export interface TaskMember {
+  id: string;
+  email: string;
+  avatar: string;
+}
+
 export interface TaskInput {
   token: string;
   proyectId: string;
@@ -37,6 +43,11 @@ export interface TaskInput {
 export interface tasksCreationData {
   taskHasCreated: boolean;
   err?: Error;
+}
+
+export interface getTaskFromUserQueryInfo {
+  tasks?: Array<Tasks>
+  err?: Error
 }
 
 export const tasksSchema = new Schema<TaskData>(

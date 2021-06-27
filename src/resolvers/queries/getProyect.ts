@@ -1,12 +1,12 @@
 import { decodeToken } from "../../auth/decodeToken";
-import { ProyectsMDB } from "../../models/proyects";
+import { getProyectsQueryInfo, ProyectsMDB } from "../../models/proyects";
 import { UserMDB } from "../../models/user";
 import { TasksMDB } from "../../models/tasks";
 
-export const proyectsQuery = async (token: string): Promise<any> => {
+export const proyectsQuery = async (token: string): Promise<getProyectsQueryInfo> => {
   const decodedToken = decodeToken(token);
   if (decodedToken === null || decodedToken === undefined) {
-    return { proyectHasCreated: false, err: { errorCode: 5, errorDesc: "Unexpected Token" } }
+    return { err: { errorCode: 5, errorDesc: "Unexpected Token" } }
   }
 
   const id = decodedToken.userId;
