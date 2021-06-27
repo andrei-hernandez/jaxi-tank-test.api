@@ -1,9 +1,11 @@
 import { IResolvers } from "graphql-tools";
 import { contactsCreationData, ContactsInput } from "../../models/contacts";
 import { membersCreationData, MembersInput, proyectCreationData } from "../../models/proyects";
+import { TaskInput, tasksCreationData } from "../../models/tasks";
 import { accountCreationData, User } from "../../models/user";
 import { addContact } from "./addContact";
 import { addNewMember } from "./addMember";
+import { addNewtask } from "./addTask";
 import { addProyect } from "./createProyect";
 import { insertUser } from "./createUser";
 
@@ -41,6 +43,19 @@ const mutations: IResolvers = {
       }
       const aMember = await addNewMember(newItemMember);
       return aMember;
+    },
+    addTask: async (_: void, { task }): Promise<tasksCreationData> => {
+      const newTaskItem: TaskInput = {
+        token: task?.token,
+        proyectId: task?.proyectId,
+        title: task?.title,
+        members: task?.members,
+        status: task?.status,
+        startAt: task?.startAt,
+        endsAt: task?.endsAt
+      }
+      const cTask = await addNewtask(newTaskItem);
+      return cTask;
     }
   }
 }

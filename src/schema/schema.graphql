@@ -9,7 +9,7 @@ type Mutation {
   createContact(contact: contactsInput!): contactsCreationData!
   createProyect(proyect: ProyectsInput!): proyectCreationData!
   addMember(member: MembersInput!): membersCreationData!
-  createTask(task: TasksInput!): tasksCreationData!
+  addTask(task: TasksInput!): tasksCreationData!
 }
 
 type Users {
@@ -69,7 +69,7 @@ type Proyects {
 input ProyectsInput {
   token: String!
   title: String!
-  members: [String!]!
+  members: [String!]!  
   creator: String!  
   startAt: String
   endsAt: String
@@ -115,17 +115,12 @@ type Tasks {
   updatedAt: String!
 }
 
-type TaskMember {
-  email: String!
-  avatar: String!
-  role: String!  
-}
-
 input TasksInput {
   token: String!
   proyectId: String!
   title: String!
   members: [String!]
+  status: String!
   startAt: String
   endsAt: String
 }

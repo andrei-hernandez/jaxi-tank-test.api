@@ -1,8 +1,11 @@
+import { Schema, model } from "mongoose";
+import { Error } from './error';
+
 export interface Tasks {
   _id: string;
   proyectId: string;
   title: string;
-  members?: Array<TaskMember>;
+  members?: Array<string>;
   status: string;
   startAt?: string;
   endsAt?: string;
@@ -13,7 +16,7 @@ export interface Tasks {
 export interface TaskData {
   proyectId: string;
   title: string;
-  members?: Array<TaskMember>;
+  members?: Array<string>;
   status: string;
   startAt?: string;
   endsAt?: string;
@@ -23,15 +26,31 @@ export interface TaskInput {
   token: string;
   proyectId: string;
   title: string;
-  members?: Array<TaskMember>;
+  members?: Array<String>;
   status: string;
   startAt?: string;
   endsAt?: string;
 }
 
-export interface TaskMember {
-  email: string;
-  avatar: string;
-  role: string;
+export interface tasksCreationData {
+  taskHasCreated: boolean;
+  err?: Error;
 }
+
+export const tasksSchema = new Schema<TaskData>(
+  {
+    proyectId: { type: String, required: true },
+    title: { type: String, required: true },
+    members: { type: Array, required: false },
+    status: { type: String, required: true },
+    startAt: { type: String, required: false },
+    endsAt: { type: String, required: false }
+  },
+  {
+    versionKey: false,
+    timestamps: true,
+  }
+);
+
+export const TasksMDB = model<TaskData>('tasks', tasksSchema);
 
