@@ -14,6 +14,7 @@ export interface User {
 export interface sessionData {
   userId: string;
   token: any;
+  userName?: string;
   avatar?: string;
   tokenExpiration: number;
   err?: Error;

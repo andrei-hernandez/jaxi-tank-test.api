@@ -10,9 +10,10 @@ type Mutation {
   createUser(user: UserInput!): accountCreationData! 
   editUser(user: UserUpdateInput!): acountUpdateData!
   createContact(contact: contactsInput!): contactsCreationData!
-  createProyect(proyect: ProyectsInput!): proyectCreationData!
+  createProyect(proyect: ProyectsInput!): proyectCreationData!  
   addMember(member: MembersInput!): membersCreationData!
   addTask(task: TasksInput!): tasksCreationData!
+  editTask(task: TasksUpdateInput!): tasksUpdateData!
 }
 
 type Users {
@@ -45,6 +46,7 @@ input UserUpdateInput {
 
 type SessionInfo {
   userId: ID!
+  userName: String!
   token: String!
   avatar: String!
   tokenExpiration: Int!
@@ -145,8 +147,23 @@ input TaskFromProyectQueryInput {
   proyectId: String!
 }
 
+input TasksUpdateInput {
+  token: String!
+  taskId: String!
+  title: String
+  members: [String]
+  status: String
+  startAt: String
+  endsAt: String
+}
+
 type tasksCreationData {
   taskHasCreated: Boolean!
+  err: Error
+}
+
+type tasksUpdateData {
+  taskHasUpdated: Boolean!
   err: Error
 }
 

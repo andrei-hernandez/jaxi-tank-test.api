@@ -14,7 +14,7 @@ export interface Tasks {
 }
 
 export interface TaskData {
-  proyectId: string;
+  proyectId?: string;
   title: string;
   members?: Array<string>;
   status: string;
@@ -40,8 +40,23 @@ export interface TaskInput {
   endsAt?: string;
 }
 
+export interface TaskUpdateInput {
+  token: string;
+  taskId: string;
+  title?: string;
+  members?: Array<string>;
+  status?: string;
+  startAt?: string;
+  endsAt?: string;
+}
+
 export interface tasksCreationData {
   taskHasCreated: boolean;
+  err?: Error;
+}
+
+export interface tasksUpdateData {
+  taskHasUpdated: boolean;
   err?: Error;
 }
 

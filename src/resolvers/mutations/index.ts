@@ -8,6 +8,7 @@ import { addNewMember } from "./addMember";
 import { addNewtask } from "./addTask";
 import { addProyect } from "./createProyect";
 import { insertUser } from "./createUser";
+import { updateTask } from "./editTask";
 import { updateUser } from "./editUser";
 
 
@@ -62,6 +63,10 @@ const mutations: IResolvers = {
       const cTask = await addNewtask(newTaskItem);
       return cTask;
     },
+    editTask: async (_: void, { task }): Promise<any> => {
+      const uTask = updateTask(task);
+      return uTask
+    }
   }
 }
 

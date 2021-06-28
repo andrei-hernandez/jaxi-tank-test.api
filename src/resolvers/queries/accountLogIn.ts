@@ -20,5 +20,5 @@ export const logIn = async (userInput: UserLogin): Promise<sessionData> => {
     expiresIn: '1d'//ignore the "somesupersecretkey"
   });
 
-  return { userId: User?._id, avatar: User?.avatar ? User?.avatar : avatarDefaultUri, token: token, tokenExpiration: 1 }
+  return { userId: User?._id, avatar: User?.avatar ? User?.avatar : avatarDefaultUri, userName: User.userName, token: token, tokenExpiration: 1 }
 }
