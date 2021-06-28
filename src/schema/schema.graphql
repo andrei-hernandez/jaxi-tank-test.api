@@ -17,6 +17,7 @@ type Mutation {
   addTaskMember(member: TasksMembersInput!): taskMembersCreationData!
   addTask(task: TasksInput!): tasksCreationData!
   editTask(task: TasksUpdateInput!): tasksUpdateData!
+  deleteTask(task: TasksDeleteInput!): tasksDeletionData!
 }
 
 type Users {
@@ -179,6 +180,11 @@ input TasksUpdateInput {
   endsAt: String
 }
 
+input TasksDeleteInput {
+  token: String!
+  taskId: String!
+}
+
 type tasksCreationData {
   taskHasCreated: Boolean!
   err: Error
@@ -191,6 +197,11 @@ type taskMembersCreationData {
 
 type tasksUpdateData {
   taskHasUpdated: Boolean!
+  err: Error
+}
+
+type tasksDeletionData {
+  taskHasDeleted: Boolean!
   err: Error
 }
 

@@ -57,6 +57,11 @@ export interface TasksMembersInput {
   memberId: StringLiteralLike
 }
 
+export interface TasksDeleteInput {
+  token: string;
+  taskId: string;
+}
+
 export interface tasksCreationData {
   taskHasCreated: boolean;
   err?: Error;
@@ -70,6 +75,11 @@ export interface taskMembersCreationData {
 export interface tasksUpdateData {
   taskHasUpdated: boolean;
   err?: Error;
+}
+
+export interface tasksDeletionData {
+  taskHasDeleted: boolean;
+  err?: Error
 }
 
 export interface getTaskFromUserQueryInfo {

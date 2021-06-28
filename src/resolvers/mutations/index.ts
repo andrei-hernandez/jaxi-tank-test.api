@@ -1,7 +1,7 @@
 import { IResolvers } from "graphql-tools";
 import { contactsCreationData, contactsDeletionData, ContactsInput } from "../../models/contacts";
 import { membersCreationData, MembersInput, proyectCreationData, proyectUpdateData } from "../../models/proyects";
-import { TaskInput, taskMembersCreationData, tasksCreationData, tasksUpdateData } from "../../models/tasks";
+import { TaskInput, taskMembersCreationData, tasksCreationData, tasksDeletionData, tasksUpdateData } from "../../models/tasks";
 import { accountCreationData, acountUpdateData, User } from "../../models/user";
 import { addContact } from "./addContact";
 import { addNewMember } from "./addMember";
@@ -10,6 +10,7 @@ import { createTaskMember } from "./addTaskMember";
 import { addProyect } from "./createProyect";
 import { insertUser } from "./createUser";
 import { removeContact } from "./deleteContact";
+import { removeTask } from "./deleteTask";
 import { updateProyect } from "./editProyect";
 import { updateTask } from "./editTask";
 import { updateUser } from "./editUser";
@@ -40,7 +41,7 @@ const mutations: IResolvers = {
       return cContact;
     },
     deleteContact: async (_: void, { contact }): Promise<contactsDeletionData> => {
-      const rContact = removeContact(contact);
+      const rContact = await removeContact(contact);
       return rContact;
     },
     createProyect: async (_: void, { proyect }): Promise<proyectCreationData> => {
@@ -81,6 +82,10 @@ const mutations: IResolvers = {
     editTask: async (_: void, { task }): Promise<tasksUpdateData> => {
       const uTask = await updateTask(task);
       return uTask;
+    },
+    deleteTask: async (_: void, { task }): Promise<tasksDeletionData> => {
+      const dTask = await removeTask(task);
+      return dTask;
     }
   }
 }

@@ -8,7 +8,6 @@ export const removeContact = async (contact: any): Promise<contactsDeletionData>
     return { contactHasDeleted: false, err: { errorCode: 5, errorDesc: "Unexpected Token" } }
   }
 
-
   const id = decodedToken.userId
   const userRes = await UserMDB.findByIdAndUpdate(id, { $pull: { contacts: `${contact?.email}` } });
   if (userRes === undefined || userRes === null) {
