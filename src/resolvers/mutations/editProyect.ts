@@ -11,7 +11,7 @@ export const updateProyect = async (proyect: any): Promise<proyectUpdateData> =>
     {
       title: proyect?.title,
       startsAt: proyect?.startsAt,
-      endsAt: proyect?.startsAt
+      endsAt: proyect?.endsAt
     }
   );
   if (res === undefined || res === null) {

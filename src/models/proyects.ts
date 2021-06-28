@@ -62,6 +62,11 @@ export interface ProyectsEditInput {
   endsAt?: string
 }
 
+export interface ProyectDeleteInput {
+  token: string;
+  proyectId: string;
+}
+
 export interface getProyectsQueryInfo {
   proyects?: Array<ProyectsData>;
   err?: Error;
@@ -75,6 +80,11 @@ export interface proyectUpdateData {
 export interface membersCreationData {
   memberHasAdded: boolean;
   err?: Error;
+}
+
+export interface proyectDeletionData {
+  proyectHasDeleted: boolean;
+  err?: Error
 }
 
 export interface proyectCreationData {
