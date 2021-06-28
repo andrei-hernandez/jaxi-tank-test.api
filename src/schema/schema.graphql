@@ -13,6 +13,7 @@ type Mutation {
   createProyect(proyect: ProyectsInput!): proyectCreationData!  
   editProyect(proyect: ProyectsEditInput!): proyectUpdateData!
   addMember(member: MembersInput!): membersCreationData!
+  addTaskMember(member: TasksMembersInput!): taskMembersCreationData!
   addTask(task: TasksInput!): tasksCreationData!
   editTask(task: TasksUpdateInput!): tasksUpdateData!
 }
@@ -156,6 +157,12 @@ input TasksInput {
   endsAt: String
 }
 
+input TasksMembersInput {
+  token: String!
+  taskId: ID!
+  memberId: ID!
+}
+
 input TaskFromProyectQueryInput {
   token: String!
   proyectId: String!
@@ -173,6 +180,11 @@ input TasksUpdateInput {
 
 type tasksCreationData {
   taskHasCreated: Boolean!
+  err: Error
+}
+
+type taskMembersCreationData {
+  memberHasAdded: Boolean!
   err: Error
 }
 

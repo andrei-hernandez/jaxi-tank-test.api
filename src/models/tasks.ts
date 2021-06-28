@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { StringLiteralLike } from "typescript";
 import { Error } from './error';
 
 export interface Tasks {
@@ -50,9 +51,20 @@ export interface TaskUpdateInput {
   endsAt?: string;
 }
 
+export interface TasksMembersInput {
+  token: string;
+  taskId: string;
+  memberId: StringLiteralLike
+}
+
 export interface tasksCreationData {
   taskHasCreated: boolean;
   err?: Error;
+}
+
+export interface taskMembersCreationData {
+  memberHasAdded: boolean;
+  err?: Error
 }
 
 export interface tasksUpdateData {

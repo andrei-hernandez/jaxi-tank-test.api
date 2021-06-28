@@ -6,6 +6,7 @@ import { accountCreationData, acountUpdateData, User } from "../../models/user";
 import { addContact } from "./addContact";
 import { addNewMember } from "./addMember";
 import { addNewtask } from "./addTask";
+import { createTaskMember } from "./addTaskMember";
 import { addProyect } from "./createProyect";
 import { insertUser } from "./createUser";
 import { updateProyect } from "./editProyect";
@@ -67,6 +68,10 @@ const mutations: IResolvers = {
       }
       const cTask = await addNewtask(newTaskItem);
       return cTask;
+    },
+    addTaskMember: async (_void, { member }): Promise<any> => {
+      const aMember = createTaskMember(member);
+      return aMember;
     },
     editTask: async (_: void, { task }): Promise<tasksUpdateData> => {
       const uTask = await updateTask(task);
