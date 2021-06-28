@@ -25,3 +25,8 @@ export interface contactsCreationData {
   contactHasCreated: boolean;
   err?: Error
 }
+
+export interface contactsDeletionData {
+  contactHasDeleted: boolean;
+  err?: Error;
+}
