@@ -1,11 +1,257 @@
-#Here create your Schema
 type Query {
-  hello: String!
-  helloWithName(name: String!): String!
-  helloToApolloGraphQLTemplate: String!
-  list: [String]
+  accountLogIn(user: LogInInput!): SessionInfo!
+  getProyects(token: String!): getProyectsQueryInfo!
+  getTasksFromUser(token: String!): getTaskFromUserQueryInfo!
+  getTasksFromProyect(taskq: TaskFromProyectQueryInput): getTaskFromProyectQueryInfo!
+  getContacts(token: String! ): getContactsQueryInfo!
 }
 
 type Mutation {
-  add(value: String!): [String]
+  createUser(user: UserInput!): accountCreationData! 
+  editUser(user: UserUpdateInput!): acountUpdateData!
+  createContact(contact: contactsInput!): contactsCreationData!
+  deleteContact(contact: contactsInput!): contactsDeletionData!
+  createProyect(proyect: ProyectsInput!): proyectCreationData!  
+  editProyect(proyect: ProyectsEditInput!): proyectUpdateData!
+  deleteProyect(proyect: ProyectDeleteInput!): proyectDeletionData!
+  addMember(member: MembersInput!): membersCreationData!
+  addTaskMember(member: TasksMembersInput!): taskMembersCreationData!
+  addTask(task: TasksInput!): tasksCreationData!
+  editTask(task: TasksUpdateInput!): tasksUpdateData!
+  deleteTask(task: TasksDeleteInput!): tasksDeletionData!
+}
+
+type Users {
+  id: ID!
+  userName: String!
+  avatar: String
+  email: String!
+  password: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+input LogInInput {
+  email: String!
+  password: String!
+}
+
+input UserInput {
+  userName: String!
+  email: String!
+  avatar: String
+  password: String!
+}
+
+input UserUpdateInput {
+  token: String!
+  userName: String
+  avatar: String
+}
+
+type SessionInfo {
+  userId: ID!
+  userName: String!
+  token: String!
+  avatar: String!
+  tokenExpiration: Int!
+  err: Error
+}
+
+type acountUpdateData {
+  userHasUpdated: Boolean!
+  err: Error
+}
+
+type UserContact {
+  _id: ID!
+  userName: String!
+  email: String!
+  avatar: String!  
+}
+
+type accountCreationData {  
+  hasCreated: Boolean!
+  err: Error
+}
+
+type Proyects {
+  id: ID!
+  title: String!
+  creator: Users!
+  members: [ProyectMembers!]!
+  tasks: [Tasks!]
+  startAt: String
+  endsAt: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+input ProyectsInput {
+  token: String!
+  title: String!
+  members: [String!]!  
+  creator: String!  
+  startAt: String
+  endsAt: String
+}
+
+input ProyectsEditInput {
+  token: String!
+  proyectId: ID!
+  title: String
+  startAt: String
+  endsAt: String
+}
+
+input ProyectDeleteInput {
+  token: String!
+  proyectId: String!
+}
+
+type ProyectMembers {
+  id: ID!
+  email: String!
+  avatar: String!
+  role: String!  
+}
+
+input MembersInput {
+  token: String!
+  proyectId: String!
+  email: String!
+  role: String!
+}
+
+type proyectUpdateData {
+  proyectHasUpdated: Boolean!
+  err: Error
+}
+
+type membersCreationData {
+  memberHasAdded: Boolean!
+  err: Error
+}
+
+type proyectCreationData {
+  proyectHasCreated: Boolean!
+  err: Error
+}
+
+type proyectDeletionData {
+  proyectHasDeleted: Boolean!
+  err: Error
+}
+
+type getProyectsQueryInfo {
+  proyects: [Proyects]
+  err: Error
+}
+
+type Tasks {
+  id: ID!
+  proyectId: ID!
+  title: String!
+  members: [ProyectMembers]
+  status: String!
+  startAt: String
+  endsAt: String
+  createdAt: String!
+  updatedAt: String!
+}
+
+input TasksInput {
+  token: String!
+  proyectId: String!
+  title: String!
+  members: [String!]
+  status: String!
+  startAt: String
+  endsAt: String
+}
+
+input TasksMembersInput {
+  token: String!
+  taskId: ID!
+  memberId: ID!
+}
+
+input TaskFromProyectQueryInput {
+  token: String!
+  proyectId: String!
+}
+
+input TasksUpdateInput {
+  token: String!
+  taskId: String!
+  title: String
+  members: [String]
+  status: String
+  startAt: String
+  endsAt: String
+}
+
+input TasksDeleteInput {
+  token: String!
+  taskId: String!
+}
+
+type tasksCreationData {
+  taskHasCreated: Boolean!
+  err: Error
+}
+
+type taskMembersCreationData {
+  memberHasAdded: Boolean!
+  err: Error
+}
+
+type tasksUpdateData {
+  taskHasUpdated: Boolean!
+  err: Error
+}
+
+type tasksDeletionData {
+  taskHasDeleted: Boolean!
+  err: Error
+}
+
+type getTaskFromUserQueryInfo {
+  tasks: [Tasks]
+  err: Error
+}
+
+type getTaskFromProyectQueryInfo {
+  tasks: [Tasks]
+  err: Error
+}
+
+type getTasksQueryInfo {
+  tasks: [Tasks]
+  err: Error
+}
+
+input contactsInput {
+  token: String!
+  email: String! 
+}
+
+type getContactsQueryInfo {
+  contacts: [UserContact]
+  err: Error
+}
+
+type contactsCreationData {
+  contactHasCreated: Boolean!
+  err: Error
+}
+
+type contactsDeletionData {
+  contactHasDeleted: Boolean!
+  err: Error
+}
+
+type Error {
+  errorCode: Int!
+  errorDesc: String!
 }

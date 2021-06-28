@@ -31,6 +31,7 @@
     "apollo-datasource-rest": "^0.12.0",
     "apollo-server": "^2.23.0",
     "apollo-server-express": "^2.23.0",
+    "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -41,16 +42,21 @@
     "graphql-tag-pluck": "^0.8.7",
     "graphql-tools": "^7.0.4",
     "http": "0.0.0",
+    "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.0",
+    "mongoose": "^5.12.15",
     "ncp": "^2.0.0",
     "typescript": "^4.2.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/compression": "1.7.0",
     "@types/cors": "^2.8.10",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.11",
     "@types/graphql": "^14.2.3",
+    "@types/jsonwebtoken": "^8.5.2",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^14.14.41"
   }
 }

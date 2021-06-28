@@ -7,7 +7,7 @@ import schema from './schema/schema';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
 import expressPlayground from 'graphql-playground-middleware-express';
-import { dataSources } from './data';
+import './services/database';
 // Inicializamos la aplicación express
 
 const app = express();
