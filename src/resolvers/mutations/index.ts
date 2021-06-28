@@ -1,13 +1,14 @@
 import { IResolvers } from "graphql-tools";
 import { contactsCreationData, ContactsInput } from "../../models/contacts";
-import { membersCreationData, MembersInput, proyectCreationData } from "../../models/proyects";
-import { TaskInput, tasksCreationData } from "../../models/tasks";
+import { membersCreationData, MembersInput, proyectCreationData, proyectUpdateData } from "../../models/proyects";
+import { TaskInput, tasksCreationData, tasksUpdateData } from "../../models/tasks";
 import { accountCreationData, acountUpdateData, User } from "../../models/user";
 import { addContact } from "./addContact";
 import { addNewMember } from "./addMember";
 import { addNewtask } from "./addTask";
 import { addProyect } from "./createProyect";
 import { insertUser } from "./createUser";
+import { updateProyect } from "./editProyect";
 import { updateTask } from "./editTask";
 import { updateUser } from "./editUser";
 
@@ -40,6 +41,10 @@ const mutations: IResolvers = {
       const cProyect = await addProyect(proyect);
       return cProyect
     },
+    editProyect: async (_: void, { proyect }): Promise<proyectUpdateData> => {
+      const uProyect = await updateProyect(proyect);
+      return uProyect
+    },
     addMember: async (_: void, { member }): Promise<membersCreationData> => {
       const newItemMember: MembersInput = {
         token: member?.token,
@@ -63,8 +68,8 @@ const mutations: IResolvers = {
       const cTask = await addNewtask(newTaskItem);
       return cTask;
     },
-    editTask: async (_: void, { task }): Promise<any> => {
-      const uTask = updateTask(task);
+    editTask: async (_: void, { task }): Promise<tasksUpdateData> => {
+      const uTask = await updateTask(task);
       return uTask
     }
   }

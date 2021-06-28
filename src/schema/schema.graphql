@@ -11,6 +11,7 @@ type Mutation {
   editUser(user: UserUpdateInput!): acountUpdateData!
   createContact(contact: contactsInput!): contactsCreationData!
   createProyect(proyect: ProyectsInput!): proyectCreationData!  
+  editProyect(proyect: ProyectsEditInput!): proyectUpdateData!
   addMember(member: MembersInput!): membersCreationData!
   addTask(task: TasksInput!): tasksCreationData!
   editTask(task: TasksUpdateInput!): tasksUpdateData!
@@ -91,6 +92,14 @@ input ProyectsInput {
   endsAt: String
 }
 
+input ProyectsEditInput {
+  token: String!
+  proyectId: ID!
+  title: String
+  startAt: String
+  endsAt: String
+}
+
 type ProyectMembers {
   id: ID!
   email: String!
@@ -103,6 +112,11 @@ input MembersInput {
   proyectId: String!
   email: String!
   role: String!
+}
+
+type proyectUpdateData {
+  proyectHasUpdated: Boolean!
+  err: Error
 }
 
 type membersCreationData {

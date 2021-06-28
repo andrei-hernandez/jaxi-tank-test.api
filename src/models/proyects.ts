@@ -54,8 +54,21 @@ export interface MembersInput {
   role: string;
 }
 
+export interface ProyectsEditInput {
+  token: string;
+  proyectId: string;
+  title?: string
+  startAt?: string
+  endsAt?: string
+}
+
 export interface getProyectsQueryInfo {
   proyects?: Array<ProyectsData>;
+  err?: Error;
+}
+
+export interface proyectUpdateData {
+  proyectHasUpdated: boolean;
   err?: Error;
 }
 
