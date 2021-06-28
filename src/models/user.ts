@@ -19,10 +19,22 @@ export interface sessionData {
   err?: Error;
 }
 
+export interface UserUpdateInput {
+  token: string;
+  userName: string;
+  avatar: string;
+}
+
 export interface UserLogin {
   email: string;
   password: string;
 }
+
+export interface acountUpdateData {
+  userHasUpdated: boolean;
+  err?: Error
+}
+
 
 export interface accountCreationData {
   hasCreated: boolean;

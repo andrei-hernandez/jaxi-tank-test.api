@@ -8,6 +8,7 @@ type Query {
 
 type Mutation {
   createUser(user: UserInput!): accountCreationData! 
+  editUser(user: UserUpdateInput!): acountUpdateData!
   createContact(contact: contactsInput!): contactsCreationData!
   createProyect(proyect: ProyectsInput!): proyectCreationData!
   addMember(member: MembersInput!): membersCreationData!
@@ -36,11 +37,22 @@ input UserInput {
   password: String!
 }
 
+input UserUpdateInput {
+  token: String!
+  userName: String
+  avatar: String
+}
+
 type SessionInfo {
   userId: ID!
   token: String!
   avatar: String!
   tokenExpiration: Int!
+  err: Error
+}
+
+type acountUpdateData {
+  userHasUpdated: Boolean!
   err: Error
 }
 

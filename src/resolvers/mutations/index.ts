@@ -2,12 +2,13 @@ import { IResolvers } from "graphql-tools";
 import { contactsCreationData, ContactsInput } from "../../models/contacts";
 import { membersCreationData, MembersInput, proyectCreationData } from "../../models/proyects";
 import { TaskInput, tasksCreationData } from "../../models/tasks";
-import { accountCreationData, User } from "../../models/user";
+import { accountCreationData, acountUpdateData, User } from "../../models/user";
 import { addContact } from "./addContact";
 import { addNewMember } from "./addMember";
 import { addNewtask } from "./addTask";
 import { addProyect } from "./createProyect";
 import { insertUser } from "./createUser";
+import { updateUser } from "./editUser";
 
 
 const mutations: IResolvers = {
@@ -21,6 +22,10 @@ const mutations: IResolvers = {
       }
       const cAccount: accountCreationData = await insertUser(newItemUser); //calls the method for inster a user and then return if is correct or no
       return cAccount;
+    },
+    editUser: async (_: void, { user }): Promise<acountUpdateData | any> => {
+      const uAccount = updateUser(user);
+      return uAccount;
     },
     createContact: async (_: void, { contact }): Promise<contactsCreationData> => {
       const newItemContact: ContactsInput = {
@@ -56,7 +61,7 @@ const mutations: IResolvers = {
       }
       const cTask = await addNewtask(newTaskItem);
       return cTask;
-    }
+    },
   }
 }
 
