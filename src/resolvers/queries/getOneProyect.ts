@@ -94,8 +94,5 @@ export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<on
     await getOneTask(task);
   }));
   proyectObj.tasks = tasksRes;
-
-  console.log(proyectObj?.members);
-
   return { proyect: proyectObj };
 }
