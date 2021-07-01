@@ -2,7 +2,7 @@ type Query {
   accountLogIn(user: LogInInput!): SessionInfo!
   getProyects(token: String!): getProyectsQueryInfo!
   getOneProyect(proyect: OneProyectInput!): oneProyectQueryData!
-  getOneTask(task: OneTaskInput!): Tasks!
+  getOneTask(task: OneTaskInput!): oneTaskQueryData!
   getTasksFromUser(token: String!): getTaskFromUserQueryInfo!
   getTasksFromProyect(taskq: TaskFromProyectQueryInput): getTaskFromProyectQueryInfo!
   getContacts(token: String! ): getContactsQueryInfo!
@@ -164,12 +164,18 @@ type Tasks {
   id: ID!
   proyectId: ID!
   title: String!
-  members: [ProyectMembers]
+  members: [TaskMember]
   status: String!
   startAt: String
   endsAt: String
   createdAt: String!
   updatedAt: String!
+}
+
+type TaskMember {
+  id: ID!
+  email: String!
+  avatar: String
 }
 
 input TasksInput {
@@ -215,6 +221,11 @@ input TasksDeleteInput {
 
 type tasksCreationData {
   taskHasCreated: Boolean!
+  err: Error
+}
+
+type oneTaskQueryData {
+  task: Tasks
   err: Error
 }
 

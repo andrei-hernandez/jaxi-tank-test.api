@@ -1,12 +1,13 @@
 import { IResolvers } from "graphql-tools";
 import { UserContactData } from "../../models/contacts";
 import { getProyectsQueryInfo, oneProyectQueryData } from "../../models/proyects";
-import { getTaskFromUserQueryInfo } from "../../models/tasks";
+import { getTaskFromUserQueryInfo, oneTaskQueryData } from "../../models/tasks";
 import { sessionData } from "../../models/user";
 
 import { logIn } from "./accountLogIn";
 import { contactsResolver } from "./getContacts";
 import { oneProyectQuery } from "./getOneProyect";
+import { oneTaskQuery } from "./getOneTask";
 import { proyectsQuery } from "./getProyect";
 import { getTasksFromProyect } from "./getTasksFromProyect";
 import { getTasksFromUser } from "./getTasksFromUser";
@@ -29,12 +30,17 @@ const queries: IResolvers = {
       const gOneProyect = await oneProyectQuery(proyect);
       return gOneProyect;
     },
+    getOneTask: async (_: void, { task }): Promise<oneTaskQueryData | any> => {
+      const gOneTask = await oneTaskQuery(task);
+      console.log(gOneTask);
+      return gOneTask;
+    },
     getTasksFromUser: async (_: void, { token }): Promise<getTaskFromUserQueryInfo> => {
       const qTasksFromUser = await getTasksFromUser(token);
       return qTasksFromUser;
     },
     getTasksFromProyect: async (_: void, { taskq }): Promise<any> => {
-      const qTasks = getTasksFromProyect(taskq);
+      const qTasks = await getTasksFromProyect(taskq);
       return qTasks
     }
   }

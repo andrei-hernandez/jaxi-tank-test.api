@@ -3,7 +3,7 @@ import { StringLiteralLike } from "typescript";
 import { Error } from './error';
 
 export interface Tasks {
-  _id: string;
+  id: string;
   proyectId: string;
   title: string;
   members?: Array<TaskMember>;
@@ -51,6 +51,12 @@ export interface TaskUpdateInput {
   endsAt?: string;
 }
 
+
+export interface oneTaskInput {
+  token: string;
+  taskId: string;
+}
+
 export interface TasksMembersInput {
   token: string;
   taskId: string;
@@ -67,6 +73,10 @@ export interface tasksCreationData {
   err?: Error;
 }
 
+export interface oneTaskQueryData {
+  task?: Tasks
+  err?: Error
+}
 export interface taskMembersCreationData {
   memberHasAdded: boolean;
   err?: Error
