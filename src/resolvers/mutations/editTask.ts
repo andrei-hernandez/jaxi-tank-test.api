@@ -13,6 +13,7 @@ export const updateTask = async (task: TaskUpdateInput | any): Promise<tasksUpda
       title: task?.title,
       members: task?.members,
       status: task?.status,
+      description: task?.description,
       startAt: task?.startAt,
       endsAt: task?.endsAt
     });

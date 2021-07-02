@@ -73,6 +73,7 @@ const mutations: IResolvers = {
         proyectId: task?.proyectId,
         title: task?.title,
         members: task?.members,
+        description: task?.description,
         status: task?.status,
         startAt: task?.startAt,
         endsAt: task?.endsAt

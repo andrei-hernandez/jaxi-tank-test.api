@@ -7,6 +7,7 @@ export interface Tasks {
   proyectId: string;
   title: string;
   members?: Array<TaskMember>;
+  description?: string;
   status: string;
   startAt?: string;
   endsAt?: string;
@@ -18,6 +19,7 @@ export interface TaskData {
   proyectId?: string;
   title: string;
   members?: Array<string>;
+  description?: string;
   status: string;
   startAt?: string;
   endsAt?: string;
@@ -35,6 +37,7 @@ export interface TaskInput {
   token: string;
   proyectId: string;
   title: string;
+  description?: string;
   members?: Array<String>;
   status: string;
   startAt?: string;
@@ -45,6 +48,7 @@ export interface TaskUpdateInput {
   token: string;
   taskId: string;
   title?: string;
+  description?: string;
   members?: Array<string>;
   status?: string;
   startAt?: string;
@@ -102,6 +106,7 @@ export const tasksSchema = new Schema<TaskData>(
     proyectId: { type: String, required: true },
     title: { type: String, required: true },
     members: { type: Array, required: false },
+    description: { type: String, required: false },
     status: { type: String, required: true },
     startAt: { type: String, required: false },
     endsAt: { type: String, required: false }
