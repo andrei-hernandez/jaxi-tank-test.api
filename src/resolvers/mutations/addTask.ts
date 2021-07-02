@@ -15,6 +15,7 @@ export const addNewtask = async (newTaskItem: TaskInput): Promise<tasksCreationD
     proyectId: newTaskItem.proyectId,
     title: newTaskItem?.title,
     members: newTaskItem?.members,
+    description: newTaskItem?.description,
     status: newTaskItem?.status,
     startAt: newTaskItem?.startAt,
     endsAt: newTaskItem?.endsAt,
