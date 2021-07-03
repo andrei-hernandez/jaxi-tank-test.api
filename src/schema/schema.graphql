@@ -5,7 +5,7 @@ type Query {
   getOneTask(task: OneTaskInput!): oneTaskQueryData!
   getTasksFromUser(token: String!): getTaskFromUserQueryInfo!
   getTasksFromProyect(taskq: TaskFromProyectQueryInput): getTaskFromProyectQueryInfo!
-  getContacts(token: String! ): getContactsQueryInfo!
+  getContacts(token: String!): getContactsQueryInfo!
 }
 
 type Mutation {
@@ -198,7 +198,7 @@ input OneTaskInput {
 input TasksMembersInput {
   token: String!
   taskId: ID!
-  memberId: ID!
+  memberEmail: ID!
 }
 
 input TaskFromProyectQueryInput {

@@ -64,7 +64,7 @@ export interface oneTaskInput {
 export interface TasksMembersInput {
   token: string;
   taskId: string;
-  memberId: StringLiteralLike
+  memberEmail: string;
 }
 
 export interface TasksDeleteInput {
