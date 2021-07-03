@@ -27,6 +27,7 @@ export const oneTaskQuery = async (task: any): Promise<oneTaskQueryData | any> =
     proyectId: res?.proyectId,
     title: res?.title,
     members: membersRes,
+    description: res?.description,
     status: res?.status,
     startAt: res?.startAt,
     endsAt: res?.endsAt,

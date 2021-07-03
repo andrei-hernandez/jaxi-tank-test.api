@@ -11,7 +11,6 @@ export const updateTask = async (task: TaskUpdateInput | any): Promise<tasksUpda
   const taskRes = await TasksMDB.findByIdAndUpdate(taskId,
     {
       title: task?.title,
-      members: task?.members,
       status: task?.status,
       description: task?.description,
       startAt: task?.startAt,

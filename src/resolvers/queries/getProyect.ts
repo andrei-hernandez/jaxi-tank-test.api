@@ -12,6 +12,7 @@ export const proyectsQuery = async (token: string): Promise<getProyectsQueryInfo
   const id = decodedToken.userId;
 
   const userQ = await UserMDB.findById(id);
+  console.log(userQ);
 
   const ProyectsArray: Array<any> | any = userQ?.proyects;
 
@@ -109,6 +110,8 @@ export const proyectsQuery = async (token: string): Promise<getProyectsQueryInfo
   await Promise.all(ProyectsArray?.map(async (proyect: any): Promise<any> => {
     await getOneProyect(proyect);
   }));
+
+  console.log(proyects);
 
   return { proyects }
 }
