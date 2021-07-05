@@ -1,9 +1,10 @@
 import { decodeToken } from "../../auth/decodeToken";
-import { oneProyectQueryData, oneProyectQueryInput, ProyectsMDB } from "../../models/proyects";
 import { UserMDB } from "../../models/user";
 import { TasksMDB } from "../../models/tasks";
+import { oneProyectQueryData, oneProyectQueryInput, ProyectsMDB } from "../../models/proyects";
 
 export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<oneProyectQueryData | any> => {
+  // verify if the token was provided is correct
   const decodedToken = decodeToken(proyect?.token);
   if (decodedToken === null || decodedToken === undefined) {
     return { err: { errorCode: 5, errorDesc: "Unexpected Token" } }
@@ -15,6 +16,7 @@ export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<on
   //gets the proyect creator 
   const creatorRes: any = await UserMDB.findById(creatorId, '_id userName email avatar');
 
+  // creates the object will be the response
   let proyectObj = {
     id: res?.id,
     title: res?.title,
@@ -37,6 +39,7 @@ export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<on
   let membersForQuery = proyectObj.members;
   let membersRes: any = [];
 
+  // function to gets the member info
   const getOneMember = async (member: any) => {
     const id = member?.userId;
     const res = await UserMDB.findById(id, '_id userName email avatar');
@@ -50,6 +53,7 @@ export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<on
     membersRes.push(memberObj);
   }
 
+  // maps the members id array to gets the info and push to the members response array
   await Promise.all(membersForQuery?.map(async (member: any): Promise<any> => {
     await getOneMember(member);
   }));
@@ -71,10 +75,12 @@ export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<on
       taskMembersRes.push(res);
     }
 
+    // maps the tasks members id array to gets the info and push to the tasks members response array
     await Promise.all(taskMembersForQuery?.map(async (memberTask: any): Promise<any> => {
       await getOneTaskMember(memberTask);
     }));
 
+    // creates the object to be pushed in the proyect object to the response
     const tasksObj = {
       id: res?.id,
       members: taskMembersRes,
@@ -90,6 +96,7 @@ export const oneProyectQuery = async (proyect: oneProyectQueryInput): Promise<on
     tasksRes.push(tasksObj);
   }
 
+  // maps the task  id array to gets the info and push to the tasks response array
   await Promise.all(tasksForQuery?.map(async (task: any): Promise<any> => {
     await getOneTask(task);
   }));

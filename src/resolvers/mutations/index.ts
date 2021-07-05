@@ -1,20 +1,20 @@
-import { IResolvers } from "graphql-tools";
-import { contactsCreationData, contactsDeletionData, ContactsInput } from "../../models/contacts";
-import { membersCreationData, MembersInput, proyectCreationData, proyectDeletionData, proyectUpdateData } from "../../models/proyects";
-import { TaskInput, taskMembersCreationData, tasksCreationData, tasksDeletionData, tasksUpdateData } from "../../models/tasks";
-import { accountCreationData, acountUpdateData, User } from "../../models/user";
-import { addContact } from "./addContact";
-import { addNewMember } from "./addMember";
 import { addNewtask } from "./addTask";
-import { createTaskMember } from "./addTaskMember";
-import { addProyect } from "./createProyect";
-import { insertUser } from "./createUser";
-import { removeContact } from "./deleteContact";
-import { removeProyect } from "./deleteProyect";
-import { removeTask } from "./deleteTask";
-import { updateProyect } from "./editProyect";
-import { updateTask } from "./editTask";
 import { updateUser } from "./editUser";
+import { updateTask } from "./editTask";
+import { insertUser } from "./createUser";
+import { removeTask } from "./deleteTask";
+import { addContact } from "./addContact";
+import { IResolvers } from "graphql-tools";
+import { addNewMember } from "./addMember";
+import { addProyect } from "./createProyect";
+import { updateProyect } from "./editProyect";
+import { removeProyect } from "./deleteProyect";
+import { removeContact } from "./deleteContact";
+import { createTaskMember } from "./addTaskMember";
+import { accountCreationData, acountUpdateData, User } from "../../models/user";
+import { contactsCreationData, contactsDeletionData, ContactsInput } from "../../models/contacts";
+import { TaskInput, taskMembersCreationData, tasksCreationData, tasksDeletionData, tasksUpdateData } from "../../models/tasks";
+import { membersCreationData, MembersInput, proyectCreationData, proyectDeletionData, proyectUpdateData } from "../../models/proyects";
 
 
 const mutations: IResolvers = {
@@ -98,4 +98,4 @@ const mutations: IResolvers = {
 
 
 export default mutations;
-//anyways the object _Mutation: {}_ contains all mutation resolvers
+// the object _Mutation: {}_ contains all mutation resolvers

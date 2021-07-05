@@ -6,5 +6,4 @@ export const decodeToken = (token: string) => {
   return decodedToken;
 }
 
-//aaaaaa this decode the token
-//ignore the "somesupersecretkey"
+// here verify if the token was povided is correct

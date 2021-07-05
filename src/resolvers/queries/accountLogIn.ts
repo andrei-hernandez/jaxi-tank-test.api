@@ -1,6 +1,6 @@
-import { UserMDB, UserLogin, sessionData } from "../../models/user";
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
+import { UserMDB, UserLogin, sessionData } from "../../models/user";
 
 const avatarDefaultUri: string = "https://www.pikpng.com/pngl/b/326-3261783_person-icon-default-user-image-jpg-clipart.png";
 
@@ -19,8 +19,6 @@ export const logIn = async (userInput: UserLogin): Promise<sessionData> => {
   const token = sign({ userId: User?._id, email: User?.email }, 'somesupersecretkey', {//here create the jsw too the session and return the session data to the client
     expiresIn: '1d'//ignore the "somesupersecretkey"
   });
-
-
 
   return { userId: User?._id, avatar: User?.avatar ? User?.avatar : avatarDefaultUri, userName: User.userName, token: token, tokenExpiration: 1 }
 }

@@ -1,16 +1,15 @@
-import { IResolvers } from "graphql-tools";
-import { UserContactData } from "../../models/contacts";
-import { getProyectsQueryInfo, oneProyectQueryData } from "../../models/proyects";
-import { getTaskFromUserQueryInfo, oneTaskQueryData } from "../../models/tasks";
-import { sessionData } from "../../models/user";
-
 import { logIn } from "./accountLogIn";
-import { contactsResolver } from "./getContacts";
-import { oneProyectQuery } from "./getOneProyect";
+import { IResolvers } from "graphql-tools";
 import { oneTaskQuery } from "./getOneTask";
 import { proyectsQuery } from "./getProyect";
-import { getTasksFromProyect } from "./getTasksFromProyect";
+import { sessionData } from "../../models/user";
+import { contactsResolver } from "./getContacts";
+import { oneProyectQuery } from "./getOneProyect";
 import { getTasksFromUser } from "./getTasksFromUser";
+import { UserContactData } from "../../models/contacts";
+import { getTasksFromProyect } from "./getTasksFromProyect";
+import { getTaskFromUserQueryInfo, oneTaskQueryData } from "../../models/tasks";
+import { getProyectsQueryInfo, oneProyectQueryData } from "../../models/proyects";
 
 const queries: IResolvers = {
   Query: {
@@ -47,3 +46,5 @@ const queries: IResolvers = {
 };
 
 export default queries;
+
+// Query :{} contains all the query resolvers 
